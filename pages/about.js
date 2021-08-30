@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
-import Head from 'next/head'
+import Meta from '../components/Meta'
 
 export class about extends Component {
     render() {
         return (
             <div>
-                <Head>
-                    <title>About</title>
-                </Head>
+                <Meta title='About' />
                 <h1>About</h1>
             </div>
         )

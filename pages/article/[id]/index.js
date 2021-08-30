@@ -1,10 +1,13 @@
 import React from 'react'
+import {server} from '../../../config'
 import Link from 'next/link'
 import {useRouter} from 'next/router'
+import Meta from '../../../components/Meta'
 
 const article = ({ article }) => {
     return (
         <>
+            <Meta title = {article.title} desciption = {article.excerpt} />
             <h1>{article.title}</h1>
             <p>{article.body}</p>
             <br />
@@ -13,9 +16,10 @@ const article = ({ article }) => {
     )
 }
 
+// fetching from API
 export const getStaticProps = async (context) => {
     const res = await fetch(
-        `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
+        `${server}/api/articles/${context.params.id}`
     )
 
     const article = await res.json()
@@ -26,11 +30,11 @@ export const getStaticProps = async (context) => {
         },
     }
 }
+
 export const getStaticPaths = async () => {
     const res = await fetch(
-        `https://jsonplaceholder.typicode.com/posts`
+        `${server}/api/articles/`
     )
-
     const articles = await res.json()
 
     // to get this object id in string paths 
@@ -42,13 +46,47 @@ export const getStaticPaths = async () => {
     return {
         paths,
         fallback: false
-        
     }
 }
 
 export default article
 
+// // fetching from JSON placeholder
+// export const getStaticProps = async (context) => {
+//     const res = await fetch(
+//         `https://jsonplaceholder.typicode.com/posts/${context.params.id}`
+//     )
 
+//     const article = await res.json()
+
+//     return {
+//         props: {
+//             article,
+//         },
+//     }
+// }
+
+// export const getStaticPaths = async () => {
+//     const res = await fetch(
+//         `https://jsonplaceholder.typicode.com/posts`
+//     )
+//     const articles = await res.json()
+
+//     // to get this object id in string paths 
+//     // {params: {id: '1', id: '2'}}
+//     const ids = articles.map(article => article.id)
+
+//     const paths = ids.map(id => ({params: {id: id.toString()}}) )
+
+//     return {
+//         paths,
+//         fallback: false
+//     }
+// }
+
+// export default article
+
+//returning just the id
 // import {useRouter} from 'next/router'
 
 // const article = () => {
