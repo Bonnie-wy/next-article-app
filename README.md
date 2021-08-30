@@ -1,3 +1,7 @@
+## Next.js Article App
+
+Traversy Media's Next.js Crash Crouse tutorial on the fundamentals of Next.js such as SSR & SSG, routing, data fetching and apis. The [link](https://youtu.be/mTz0GXj8NN0) to the tutorial.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
